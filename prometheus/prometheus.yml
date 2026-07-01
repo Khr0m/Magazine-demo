@@ -1,0 +1,29 @@
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+scrape_configs:
+  - job_name: 'catalog-service'
+    static_configs:
+      - targets: ['catalog_service:8001']
+    metrics_path: /metrics
+    scrape_interval: 30s
+    scrape_timeout: 10s
+
+  - job_name: 'order-service'
+    static_configs:
+      - targets: ['order_service:8002']
+    metrics_path: /metrics
+    scrape_interval: 30s
+    scrape_timeout: 10s
+
+  # - job_name: 'prometheus'
+  #   static_configs:
+  #     - targets: ['localhost:9090']
+
+  # - job_name: 'grafana'
+  #   static_configs:
+  #     - targets: ['localhosts:3000']
+
+rule_files:
+  - "rules.yml"
